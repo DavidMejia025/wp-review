@@ -10,8 +10,13 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV['PREWORK_DATABASE_POOL_LIMIT'] || 4 %>
+  host: localhost
+  port: 5432
+  username: <%= ENV['DB_USER_NAME'] %>
+  password: <%= ENV["DB_PASSWORD"]  %>
 
 development:
+
   <<: *default
   database: wp_review_development
 
@@ -51,4 +56,4 @@ production:
   <<: *default
   database: prework_production
   username: prework
-  password: <%= ENV['PREWORK_DATABASE_PASSWORD'] %>  
+  password: <%= ENV['PREWORK_DATABASE_PASSWORD'] %>
