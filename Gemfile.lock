@@ -81,6 +81,8 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
+    figaro (1.1.1)
+      thor (~> 0.14)
     github_api (0.18.2)
       addressable (~> 2.4)
       descendants_tracker (~> 0.0.4)
@@ -219,6 +221,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  figaro
   github_api
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
@@ -236,7 +239,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.3.7p456
+   ruby 2.3.8p459
 
 BUNDLED WITH
-   1.16.2
+   1.16.6
