@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: developers
-#
-#  id         :bigint           not null, primary key
-#  name       :string
-#  role       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class Developer < ApplicationRecord
   def self.sum
     puts 2
@@ -19,9 +8,25 @@ class Developer < ApplicationRecord
   end
 
   def self.send_request(url: "")
-    github_base_end_point = "https://api.github.com/"
-    request = github_base_end_point+url
-    puts request
-    puts HTTParty.get(request)
+    root    = "https://api.github.com/"
+    request = root+url
+
+    gh_response  = HTTParty.get(request)
+
+    if gh_response.response["status"] == "200 OK"
+      response = parse_gh_response(response: gh_response)
+    else
+      puts gh_response
+    end
+
+    byebug
+  end
+
+  def self.parse_gh_response(response:)
+    response = JSON.parse(response.body)
+
+    return response.with_indifferent_access if response.is_a? Hash
+
+    response.map { |item| item.with_indifferent_access }
   end
 end
